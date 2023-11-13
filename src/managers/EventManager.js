@@ -177,7 +177,7 @@ class EventManager {
         this.embedSDK.resetScenes();
         break;
       default:
-        console.log('Action not found');
+        console.log('Event not found');
     }
   }
 

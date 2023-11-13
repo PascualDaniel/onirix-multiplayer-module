@@ -52,6 +52,8 @@ class OnirixMultiplayerModule {
   }
   
   /**
+   *   * )))))))))))))))))))))))))
+    * quitar creo 
    * Hear an event
    * @param event name of the event
    * @param func function to execute
@@ -62,6 +64,8 @@ class OnirixMultiplayerModule {
   }
 
    /**
+    * )))))))))))))))))))))))))
+    * quitar creo 
    * Dispatch an event
    * @param ev name of the event
    * @param args data to send
