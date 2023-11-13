@@ -1,0 +1,29 @@
+{
+  "name": "@onirix/multiplayer-module",
+  "version": "1.0.0",
+  "description": "Onirix multiplayer library",
+  "main": "./dist/ox-multiplayer-module.js",
+  "module": "./dist/ox-multiplayer-module.esm.js",
+  "unpkg": "./dist/ox-multiplayer-module.umd.js",
+  "source": "src/OnirixMultiplayerModule.js",
+  "scripts": {
+    "build": "rimraf dist && microbundle --name OnirixMultiplayerModule --external none --sourcemap false"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "author": "Onirix",
+  "license": "Propietary",
+  "devDependencies": {
+    "microbundle": "^0.13.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "@onirix/embed-sdk": "^1.3.0",
+    "jsdom": "^21.1.1",
+    "socket.io": "^4.5.4",
+    "socket.io-client": "^4.6.1"
+  }
+}
