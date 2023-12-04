@@ -6,17 +6,25 @@ class OnirixMultiplayerModule {
   /**
 * URL of the place where the server is displyed
 */
-  SOCKET_URL = 'URL';
+  SOCKET_URL = 'http://[::1]:3000';
 
 
   embedSDK = '';
 
-  connectionManager="";
+  connectionManager = "";
 
 
-  constructor(document, embedSDKp) {
+  // TODO
+  //añadir IP al consytructor
 
-    this.embedSDK = new OnirixEmbedSDK(document,"http://127.0.0.1:5500");
+  constructor(document, embedSDKp, url) {
+    
+    if (url != null) {
+      this.SOCKET_URL = url;
+    }
+
+    this.embedSDK = new OnirixEmbedSDK(document,"http://127.0.0.1:5500" );
+
     if (embedSDKp != null) {
       this.embedSDK = embedSDKp;
     }
@@ -24,16 +32,14 @@ class OnirixMultiplayerModule {
     this.embedSDK.connect();
 
 
-    this.connectionManager = new ConnectionManager('http://[::1]:3000',  this.embedSDK);
-  
+    this.connectionManager = new ConnectionManager(SOCKET_URL, this.embedSDK);
+
   }
 
 
   async joinSession(roomName) {
     return this.connectionManager.joinRoom(roomName);
-
-
-  } 
+  }
   async createSession(roomName) {
     return this.connectionManager.createRoom(roomName);
   }
@@ -48,31 +54,11 @@ class OnirixMultiplayerModule {
 
 
   async publish(data) {
-     return this.connectionManager.publish(data);
-  }
-  
-  /**
-   *   * )))))))))))))))))))))))))
-    * quitar creo 
-   * Hear an event
-   * @param event name of the event
-   * @param func function to execute
-   * @returns the listener
-   */
-  subscribe(event, func) {
-    return this.connectionManager.subscribe(event, func);
+    return this.connectionManager.publish(data);
   }
 
-   /**
-    * )))))))))))))))))))))))))
-    * quitar creo 
-   * Dispatch an event
-   * @param ev name of the event
-   * @param args data to send
-   */
-  triggerEvent(ev, args) {
-    this.connectionManager.triggerEvent(ev, args);
-  }
+ 
+
 
   /**
    * get room position
@@ -80,7 +66,7 @@ class OnirixMultiplayerModule {
    * */
   getRoomPosition() {
     return this.connectionManager.getRoomPosition();
-  } 
+  }
 
 
   //method for start observers to subscribe
@@ -102,15 +88,14 @@ class OnirixMultiplayerModule {
     this.connectionManager.unsubscribeTurnObservers(func);
   }
 
-  subscribeWinObservers(func){
+  subscribeWinObservers(func) {
     this.connectionManager.subscribeWinObservers(func);
   }
-  unsubscribeWinObservers(func){
+  unsubscribeWinObservers(func) {
     this.connectionManager.unsubscribeWinObservers(func);
   }
 
-
-  win(){
+  win() {
     this.connectionManager.win();
   }
   async checkTurn() {
@@ -120,6 +105,31 @@ class OnirixMultiplayerModule {
   passTurn() {
     this.connectionManager.nextTurn();
   }
+
+
+
+ /**
+   * a
+   * DEPRECATED
+   * Hear an event
+   * @param event name of the event
+   * @param func function to execute
+   * @returns the listener
+
+  subscribe(event, func) {
+    return this.connectionManager.subscribe(event, func);
+  }
+  */
+  /**
+   * DEPRECATED
+  * Dispatch an event
+  * @param ev name of the event
+  * @param args data to send
+  
+  triggerEvent(ev, args) {
+    this.connectionManager.triggerEvent(ev, args);
+  }
+  */
 
 }
 

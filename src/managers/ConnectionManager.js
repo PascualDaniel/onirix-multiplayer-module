@@ -157,8 +157,8 @@ class ConnectionManager {
     }
   }
 
-   //method for  win observers to notify
-   notifyWinObservers(data) {
+  //method for  win observers to notify
+  notifyWinObservers(data) {
     for (let i = 0; i < this.winObservers.length; i++) {
       this.winObservers[i](data);
     }
@@ -179,7 +179,7 @@ class ConnectionManager {
   }
 
 
-  win(){
+  win() {
     this.socket.emit('win', this.room);
   }
   /**
@@ -241,21 +241,23 @@ class ConnectionManager {
    * @param event name of the event
    * @param func function to execute
    * @returns the listener
-   */
+   
   subscribe(event, func) {
     return this.eventManager.subscribe(event, func);
   }
-
+*/
 
 
   /**
   * Dispatch an event
   * @param ev name of the event
   * @param args data to send
-  */
+ 
   triggerEvent(ev, args) {
     this.eventManager.triggerEvent(ev, args);
   }
+ */
+
 
   /**
   * Publish an event
@@ -278,9 +280,9 @@ class ConnectionManager {
     return 'published ' + this.socket.id + " " + this.room;
   }
 
-/**
- * Pass the turn to the next player
- */
+  /**
+   * Pass the turn to the next player
+   */
   nextTurn() {
     this.socket.emit('pass-turn', this.room);
   }
@@ -288,14 +290,14 @@ class ConnectionManager {
   async checkTurn() {
     this.socket.emit('is-my-turn', this.room);
 
-     return new Promise(resolve => {
+    return new Promise(resolve => {
       setTimeout(() => {
         resolve(this.isMyTurn);
         console.log(this.isMyTurn)
       }, 100);
     });
 
-    
+
   }
 
 

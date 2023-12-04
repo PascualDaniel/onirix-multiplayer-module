@@ -45,8 +45,8 @@ class EventManager {
 
 
   init() {
-    this.eventListeners = {};
-    this.eventListenersCount = 0;
+    //this.eventListeners = {};
+    //this.eventListenersCount = 0;
   }
 
 
@@ -177,11 +177,13 @@ class EventManager {
         this.embedSDK.resetScenes();
         break;
       default:
-        console.log('Event not found');
+        console.log('Action not found');
     }
   }
 
 
+
+  /** 
   addEventListener(ev, func) {
     if (!this.eventListeners[ev]) {
       this.eventListeners[ev] = [];
@@ -193,27 +195,29 @@ class EventManager {
     });
     return listenerId;
   }
+  */
 
     /**
    * Hear an event
    * @param event name of the event
    * @param func function to execute
    * @returns the listener
-   */
+
     subscribe(event, func) {
       return this.eventManager.subscribe(event, func);
     }
-
+    */
   /**
    * Dispatch an event
    * @param ev name of the event
    * @param args data to send
-   */
+  
   triggerEvent(ev, args) {
     if (this.eventListeners[ev]) {
       this.eventListeners[ev].map((listener) => listener.func(args));
     }
   }
+  */
 
 
 
