@@ -17,22 +17,23 @@ class OnirixMultiplayerModule {
   // TODO
   //añadir IP al consytructor
 
-  constructor(document, embedSDKp, url) {
+  constructor(document = typeof window !== 'undefined' ? window.document : undefined, embedSDKp, url) {
     
     if (url != null) {
       this.SOCKET_URL = url;
     }
 
-    this.embedSDK = new OnirixEmbedSDK(document,"http://127.0.0.1:5500" );
+    this.embedSDK = embedSDKp;
 
-    if (embedSDKp != null) {
-      this.embedSDK = embedSDKp;
+    if (embedSDKp == null) {
+      //default embedSDK
+      this.embedSDK = new OnirixEmbedSDK(document,"http://127.0.0.1:5500" );
     }
 
     this.embedSDK.connect();
 
 
-    this.connectionManager = new ConnectionManager(SOCKET_URL, this.embedSDK);
+    this.connectionManager = new ConnectionManager(this.SOCKET_URL, this.embedSDK);
 
   }
 
@@ -105,31 +106,6 @@ class OnirixMultiplayerModule {
   passTurn() {
     this.connectionManager.nextTurn();
   }
-
-
-
- /**
-   * a
-   * DEPRECATED
-   * Hear an event
-   * @param event name of the event
-   * @param func function to execute
-   * @returns the listener
-
-  subscribe(event, func) {
-    return this.connectionManager.subscribe(event, func);
-  }
-  */
-  /**
-   * DEPRECATED
-  * Dispatch an event
-  * @param ev name of the event
-  * @param args data to send
-  
-  triggerEvent(ev, args) {
-    this.connectionManager.triggerEvent(ev, args);
-  }
-  */
 
 }
 

@@ -30,26 +30,10 @@ class EventManager {
     RESET_SCENES: 'resetScenes',
   };
 
-  /**
-   * Indicate the action send o recive from the server
-   */
-  ACTIONS = {
-    SEND_ACTION: 'send-action',
-    RECIVE_ACTION: 'recive-action',
-  };
-
   constructor(sdk) {
     this.embedSDK = sdk;
 
   }
-
-
-  init() {
-    //this.eventListeners = {};
-    //this.eventListenersCount = 0;
-  }
-
-
 
   //manage publish events
   publish( data) {
@@ -180,47 +164,6 @@ class EventManager {
         console.log('Action not found');
     }
   }
-
-
-
-  /** 
-  addEventListener(ev, func) {
-    if (!this.eventListeners[ev]) {
-      this.eventListeners[ev] = [];
-    }
-    const listenerId = this.eventListenersCount++;
-    this.eventListeners[ev].push({
-      id: listenerId,
-      func: func,
-    });
-    return listenerId;
-  }
-  */
-
-    /**
-   * Hear an event
-   * @param event name of the event
-   * @param func function to execute
-   * @returns the listener
-
-    subscribe(event, func) {
-      return this.eventManager.subscribe(event, func);
-    }
-    */
-  /**
-   * Dispatch an event
-   * @param ev name of the event
-   * @param args data to send
-  
-  triggerEvent(ev, args) {
-    if (this.eventListeners[ev]) {
-      this.eventListeners[ev].map((listener) => listener.func(args));
-    }
-  }
-  */
-
-
-
 
 }
 

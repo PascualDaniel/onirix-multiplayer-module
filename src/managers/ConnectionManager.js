@@ -234,31 +234,6 @@ class ConnectionManager {
     return 'start';
   }
 
-
-
-  /**
-   * Hear an event
-   * @param event name of the event
-   * @param func function to execute
-   * @returns the listener
-   
-  subscribe(event, func) {
-    return this.eventManager.subscribe(event, func);
-  }
-*/
-
-
-  /**
-  * Dispatch an event
-  * @param ev name of the event
-  * @param args data to send
- 
-  triggerEvent(ev, args) {
-    this.eventManager.triggerEvent(ev, args);
-  }
- */
-
-
   /**
   * Publish an event
   * @param data data to send to the server
