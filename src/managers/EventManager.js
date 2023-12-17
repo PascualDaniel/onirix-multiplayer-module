@@ -44,7 +44,7 @@ class EventManager {
           data.transition != null ? data.transition : 0,
           data.time != null ? data.time : 1,
         );
-        console.log("help");
+        console.log("Event: enable");
         break;
       case this.Events.DISABLE:
         this.embedSDK.disable(
@@ -52,7 +52,7 @@ class EventManager {
           data.transition != null ? data.transition : 0,
           data.time != null ? data.time : 1,
         );
-        console.log("disable");
+        console.log("Event: disable");
         break;
       case this.Events.ENABLE_ALL:
         this.embedSDK.enableAll();

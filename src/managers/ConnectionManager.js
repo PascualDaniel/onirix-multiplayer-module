@@ -157,7 +157,7 @@ class ConnectionManager {
     }
   }
 
-  //method for  win observers to notify
+  //method that notifies the win observers
   notifyWinObservers(data) {
     for (let i = 0; i < this.winObservers.length; i++) {
       this.winObservers[i](data);
@@ -178,7 +178,7 @@ class ConnectionManager {
     }
   }
 
-
+  //this method sends a message to the server saying that the player won
   win() {
     this.socket.emit('win', this.room);
   }
