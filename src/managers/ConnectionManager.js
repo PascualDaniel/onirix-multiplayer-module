@@ -80,10 +80,15 @@ class ConnectionManager {
     });
 
     this.socket.on('your-turn', (data) => {
+      if (this.playerID == null) {
+        this.isMyTurn = true;
+        this.playerID = data
+      }
       if (this.playerID == data) {
         this.isMyTurn = true;
         console.log('My turn.');
       }
+      console.log('My turn.'+this.playerID+" "+data);
     });
     this.socket.on('winner', (data) => {
       this.winner = data;
@@ -96,6 +101,7 @@ class ConnectionManager {
     this.socket.on('next-turn', (data) => {
       if (this.playerID == data) {
         this.isMyTurn = true;
+        
         console.log('My turn.');
       }
       this.notifyTurnObservers(this.playerID == data);

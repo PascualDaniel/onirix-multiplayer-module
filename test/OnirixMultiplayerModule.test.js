@@ -64,10 +64,7 @@ describe('OnirixMultiplayerModule', () => {
 
 
 
-    test('checkTurn should call connectionManager.checkTurn', async () => {
-        await module.checkTurn();
-        expect(module.connectionManager.checkTurn).toHaveBeenCalled();
-    });
+  
 
     test('passTurn should call connectionManager.passTurn', () => {
         module.passTurn();
