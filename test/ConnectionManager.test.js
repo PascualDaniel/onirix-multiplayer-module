@@ -19,9 +19,25 @@ describe('ConnectionManager', () => {
     expect(mockSocket.emit).toHaveBeenCalledWith('create-room', 'testRoom');
   });
 
-    test('should join a room', () => {
-        connectionManager.joinRoom('testRoom');
-        expect(mockSocket.emit).toHaveBeenCalledWith('join-room', 'testRoom');
-    });
+  test('should join a room', () => {
+    connectionManager.joinRoom('testRoom');
+    expect(mockSocket.emit).toHaveBeenCalledWith('join-room', 'testRoom');
+  });
 
+  test('should leave a room', () => {
+    connectionManager.disconnectRoom();
+    expect(mockSocket.emit).toHaveBeenCalledWith('leave-room', '');
+  });
+
+  test('should start a game', () => {
+    connectionManager.startGame();
+    expect(mockSocket.emit).toHaveBeenCalledWith('game-start', '');
+  });
+
+  test('should send a win message', () => {
+    connectionManager.win();
+    expect(mockSocket.emit).toHaveBeenCalledWith('win', '');
+  });
+
+  
 });

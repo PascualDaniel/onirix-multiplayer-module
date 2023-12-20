@@ -73,5 +73,64 @@ describe('OnirixMultiplayerModule', () => {
 
 
 
+
+    test('win should call connectionManager.win', () => {
+        module.win();
+        expect(module.connectionManager.win).toHaveBeenCalled();
+    });
+
+    test('checkTurn should call connectionManager.checkTurn', () => {
+        module.checkTurn();
+        expect(module.connectionManager.checkTurn).toHaveBeenCalled();
+    });
+
+    test('subscribeStartObservers should call connectionManager.subscribeStartObservers', () => {
+        const func = jest.fn();
+        module.subscribeStartObservers(func);
+        expect(module.connectionManager.subscribeStartObservers).toHaveBeenCalledWith(func);
+    }   
+    );
+
+    test('unsubscribeStartObservers should call connectionManager.unsubscribeStartObservers', () => {
+        const func = jest.fn();
+        module.unsubscribeStartObservers(func);
+        expect(module.connectionManager.unsubscribeStartObservers).toHaveBeenCalledWith(func);
+    }   
+    );
+
+    test('subscribeTurnObservers should call connectionManager.subscribeTurnObservers', () => {
+        const func = jest.fn();
+        module.subscribeTurnObservers(func);
+        expect(module.connectionManager.subscribeTurnObservers).toHaveBeenCalledWith(func);
+    }   
+    );
+
+    test('unsubscribeTurnObservers should call connectionManager.unsubscribeTurnObservers', () => {
+        const func = jest.fn();
+        module.unsubscribeTurnObservers(func);
+        expect(module.connectionManager.unsubscribeTurnObservers).toHaveBeenCalledWith(func);
+    }   
+    );
+
+    test('subscribeWinObservers should call connectionManager.subscribeWinObservers', () => {
+        const func = jest.fn();
+        module.subscribeWinObservers(func);
+        expect(module.connectionManager.subscribeWinObservers).toHaveBeenCalledWith(func);
+    }   
+    );
+
+    test('unsubscribeWinObservers should call connectionManager.unsubscribeWinObservers', () => {
+        const func = jest.fn();
+        module.unsubscribeWinObservers(func);
+        expect(module.connectionManager.unsubscribeWinObservers).toHaveBeenCalledWith(func);
+    }   
+    );
+
+   
+
+
+
+
+
 });
 
