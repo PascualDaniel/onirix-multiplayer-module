@@ -88,7 +88,7 @@ class ConnectionManager {
         this.isMyTurn = true;
         console.log('My turn.');
       }
-      console.log('My turn.'+this.playerID+" "+data);
+      console.log('My turn.' + this.playerID + " " + data);
     });
     this.socket.on('winner', (data) => {
       this.winner = data;
@@ -101,7 +101,7 @@ class ConnectionManager {
     this.socket.on('next-turn', (data) => {
       if (this.playerID == data) {
         this.isMyTurn = true;
-        
+
         console.log('My turn.');
       }
       this.notifyTurnObservers(this.playerID == data);
@@ -248,16 +248,11 @@ class ConnectionManager {
   publish(data) {
     this.checkConnection();
     //  Send a message to the server
-
     this.eventManager.publish(data);
-
     data['id'] = this.socket.id;
     data['room'] = this.room;
     data['message'] = "message";
     this.socket.emit(data.event, data);
-    // this.socket.emit(data.event, data);
-
-    //this.io.to(this.room).emit('message', 'for your eyes only');
     return 'published ' + this.socket.id + " " + this.room;
   }
 
@@ -287,21 +282,17 @@ class ConnectionManager {
   * @returns true if the socket is connected
   */
   async checkConnection() {
-    if (this.socket == null) {
-      //throw error
-      //console.error('Cannot join because the socket is not connected.');
-      return;
-    }
+
     console.log(this.socket?.connected);
     // Do not try to send if the socket is not connected.
     if (!this.socket?.connected) {
-      // console.error('Cannot send because the socket is not connected.');
+      console.error('Cannot send because the socket is not connected.');
     }
     //return await this.socket.connected;
     return new Promise(resolve => {
       setTimeout(() => {
         resolve(this.socket.connected);
-      }, 2000);
+      }, 100);
     });
   }
 
@@ -309,7 +300,6 @@ class ConnectionManager {
   getRoomPosition() {
     return this.roomPosition;
   }
-
 
 
 }
