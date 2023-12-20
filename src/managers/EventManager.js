@@ -34,8 +34,7 @@ class EventManager {
     this.embedSDK = sdk;
 
   }
-
-  //manage publish events
+ //manage publish events
   publish( data) {
     switch (data.action) {
       case this.Events.ENABLE:
@@ -56,9 +55,11 @@ class EventManager {
         break;
       case this.Events.ENABLE_ALL:
         this.embedSDK.enableAll();
+        console.log("Event: enable all");
         break;
       case this.Events.DISABLE_ALL:
         this.embedSDK.disableAll();
+        console.log("Event: disable all");
         break;
       case this.Events.ROTATE:
         this.embedSDK.rotate(
@@ -69,6 +70,7 @@ class EventManager {
           data.time,
           data.loop,
         );
+        console.log("Event: rotate");
         break;
       case this.Events.TOGGLE:
         this.embedSDK.toggle(
@@ -76,15 +78,19 @@ class EventManager {
           data.transition != null ? data.transition : 0,
           data.time != null ? data.time : 1,
         );
+        console.log("Event: toggle");
         break;
       case this.Events.SET_LABEL_TEXT:
         this.embedSDK.setLabelText(data.element, data.text);
+        console.log("Event: set label text");
         break;
       case this.Events.PLAY:
         this.embedSDK.play(data.element);
+        console.log("Event: play");
         break;
       case this.Events.PAUSE:
         this.embedSDK.pause(data.element);
+        console.log("Event: pause");
         break;
       case this.Events.TRANSLATE:
         this.embedSDK.translate(
@@ -95,6 +101,7 @@ class EventManager {
           data.time,
           data.loop,
         );
+        console.log("Event: translate");
         break;
       case this.Events.ROTATE_TO:
         this.embedSDK.rotateTo(
@@ -105,6 +112,7 @@ class EventManager {
           data.time,
           data.loop,
         );
+        console.log("Event: rotate to");
         break;
       case this.Events.ROTATE_TO_QUATERNION:
         this.embedSDK.rotateToQuaternion(
@@ -116,6 +124,7 @@ class EventManager {
           data.time,
           data.loop,
         );
+        console.log("Event: rotate to quaternion");
         break;
       case this.Events.SCALE:
         this.embedSDK.scale(
@@ -126,6 +135,7 @@ class EventManager {
           data.time,
           data.loop,
         );
+        console.log("Event: scale");
         break;
       case this.Events.PLAY_ANIMATION:
         this.embedSDK.playAnimation(
@@ -135,9 +145,10 @@ class EventManager {
           data.autoStop != null ? data.autoStop : false,
           data.time,
         );
+        console.log("Event: play animation");
         break;
       case this.Events.STOP_ANIMATION:
-        this.embedSDK(data.element);
+        this.embedSDK.stopAnimation(data.element);
         break;
       case this.Events.TRANSLATE_TO_POSITION:
         this.embedSDK.translateToPosition(
@@ -148,6 +159,7 @@ class EventManager {
           data.time,
           data.lookAt,
         );
+        console.log("Event: translate to position");
         break;
       case this.Events.TRANSLATE_TO_ELEMENT:
         this.embedSDK.translateToElement(
@@ -156,9 +168,11 @@ class EventManager {
           data.time,
           data.lookAt,
         );
+        console.log("Event: translate to element");
         break;
       case this.Events.RESET_SCENES:
         this.embedSDK.resetScenes();
+        console.log("Event: reset scenes");
         break;
       default:
         console.log('Action not found');
