@@ -38,6 +38,7 @@ class ConnectionManager {
       url = 'http://localhost:3000';
     }
     this.socket = io(url);
+    console.log(io(url));
     this.socket.connect();
 
 
@@ -45,7 +46,8 @@ class ConnectionManager {
 
     new Promise(resolve => {
       setTimeout(() => {
-        resolve(console.log(this.socket));
+        resolve();
+       // resolve(console.log(this.socket));
         this.playerID = this.socket.id;
       }, 100);
     });
@@ -269,7 +271,7 @@ class ConnectionManager {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve(this.isMyTurn);
-        console.log(this.isMyTurn)
+        //console.log(this.isMyTurn)
       }, 100);
     });
 
@@ -283,7 +285,7 @@ class ConnectionManager {
   */
   async checkConnection() {
 
-    console.log(this.socket?.connected);
+    //console.log(this.socket?.connected);
     // Do not try to send if the socket is not connected.
     if (!this.socket?.connected) {
       console.error('Cannot send because the socket is not connected.');
