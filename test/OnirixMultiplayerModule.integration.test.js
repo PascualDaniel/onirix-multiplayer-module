@@ -39,20 +39,10 @@ describe('OnirixMultiplayerModule Integration Test', () => {
         const roomName = 'testRoom';
 
         // Mock the ConnectionManager.joinRoom method
-       // module.connectionManager.joinRoom = jest.fn();
-
         // Call the joinSession method
         await module.joinSession(roomName);
-
-
         // expect socket to have called connect
         expect(mockConnect).toHaveBeenCalled();
-
-        // Expect the ConnectionManager.joinRoom method to be called with the correct arguments
-       // expect(module.connectionManager.joinRoom).toHaveBeenCalledWith(roomName);
-
-        
-        //expect(mockOn).toHaveBeenCalled();
 
         expect(mockEmit).toHaveBeenCalled();
 
@@ -77,6 +67,33 @@ describe('OnirixMultiplayerModule Integration Test', () => {
         await module.startSession();
         expect(mockConnect).toHaveBeenCalled();
         // Expect the ConnectionManager.startGame method to be called
+        expect(mockEmit).toHaveBeenCalled();
+    });
+
+    test('publish should call ConnectionManager.publish', async () => {
+        const data = 
+            {
+                id: "test",
+                room: "test",
+                message : "test"
+            }
+
+        // Call the publish method
+        await module.publish(data);
+
+        // Expect the ConnectionManager.publish method to be called
+        expect(mockEmit).toHaveBeenCalled();
+    });
+
+   
+    //createSession
+    test('createSession should call ConnectionManager.createRoom', async () => {
+        const roomName = 'testRoom';
+        // Mock the ConnectionManager.createRoom method
+        // Call the createSession method
+        await module.createSession(roomName);
+
+        // Expect the ConnectionManager.createRoom method to be called
         expect(mockEmit).toHaveBeenCalled();
     });
 
