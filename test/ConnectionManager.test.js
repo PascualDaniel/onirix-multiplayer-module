@@ -30,7 +30,17 @@ describe('ConnectionManager', () => {
 
   test('should create a room', () => {
     connectionManager.createRoom('testRoom');
-    expect(mockSocket.emit).toHaveBeenCalledWith('create-room', 'testRoom');
+    expect(mockSocket.emit).toHaveBeenCalledWith('create-room', 'testRoom', expect.any(Function));
+  });
+  test('should not delete a room', () => {  
+    connectionManager.deleteRoom();
+    expect(mockSocket.emit).not.toHaveBeenCalledWith('close-room', '', expect.any(Function));
+  });
+
+  test('should delete a room', () => {
+    connectionManager.room = 'testRoom';
+    connectionManager.deleteRoom();
+    expect(mockSocket.emit).toHaveBeenCalledWith('close-room', 'testRoom', expect.any(Function));
   });
 
   test('JoinRoom- should join a room', () => {

@@ -23,14 +23,28 @@ const logger = document.getElementById("logger");
 
 // Subscribe to events a button
 const createbutton = document.getElementById("create-button");
+const crea = document.getElementById("crea");
 createbutton.addEventListener("click", () => {
     logger.innerHTML += "Creating room" +"\n";
 
-    oxMultiplayer.createSession("room").then((data) => {
+    oxMultiplayer.createSession(crea.value).then((data) => {
         logger.innerHTML += data +"\n";
     });
 
 });
+//delete 
+const deleteButton = document.getElementById("delete-button");
+
+// Add an event listener to the delete button
+deleteButton.addEventListener("click", () => {
+    // Perform the delete operation here
+    logger.innerHTML += "Delete room" +"\n";
+    // For example, you can call a function to delete a session:
+    oxMultiplayer.deleteSession().then((data) => {
+        logger.innerHTML += data + "\n";
+    });
+});
+
 
 const join = document.getElementById("join");
 const joinbutton = document.getElementById("join-button");

@@ -38,7 +38,7 @@ class ConnectionManager {
       url = 'http://localhost:3000';
     }
     this.socket = io(url);
-    console.log(io(url));
+
     this.socket.connect();
 
 
@@ -92,6 +92,8 @@ class ConnectionManager {
       }
       console.log('My turn.' + this.playerID + " " + data);
     });
+ 
+
     this.socket.on('winner', (data) => {
       this.winner = data;
       if (this.playerID == data) {
@@ -99,6 +101,7 @@ class ConnectionManager {
         console.log('win');
       }
     });
+
 
     this.socket.on('next-turn', (data) => {
       if (this.playerID == data) {
@@ -108,18 +111,6 @@ class ConnectionManager {
       }
       this.notifyTurnObservers(this.playerID == data);
       console.log('next-turn');
-    });
-
-    this.socket.on('connect', () => {
-
-      console.log('Connected to server.');
-    });
-    this.socket.on('disconnect', () => {
-      console.log('Connected to server.');
-    });
-
-    this.socket.on('join-room', () => {
-      console.log('join-room to server.');
     });
   }
 
@@ -197,8 +188,35 @@ class ConnectionManager {
    */
   createRoom(room) {
     this.room = room;
-    this.socket.emit('create-room', this.room);
+    this.respuesta = "";
+    this.socket.emit('create-room', this.room, (response) => {
+      // This is the callback function that will be executed when the server sends a response
+      this.respuesta = response;
+      console.log(response);
+    });
     return 'create-room ' + this.socket.id;
+  }
+
+
+  /**
+   * Delete a room
+   * @returns a message with the id of the socket
+   */
+  deleteRoom() {
+    if (this.room == '') {
+      return 'No room to delete';
+    }
+    this.respuesta = "";
+    this.socket.emit('close-room', this.room,(response) => {
+      // This is the callback function that will be executed when the server sends a response
+      this.respuesta = response;
+      if(this.respuesta == true){ 
+        this.room = '';
+        this.roomPosition = -1;
+      }
+    });
+
+    return 'delete-room ' + this.socket.id;
   }
 
   /**
@@ -214,6 +232,10 @@ class ConnectionManager {
     return 'leave-room' + this.socket.id;
   }
 
+
+disconnect(){
+  this.socket.disconnect();
+}
   /**
   * Join a room
   * @param room name of the room

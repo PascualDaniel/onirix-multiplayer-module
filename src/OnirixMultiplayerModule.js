@@ -44,7 +44,9 @@ class OnirixMultiplayerModule {
   async createSession(roomName) {
     return this.connectionManager.createRoom(roomName);
   }
-
+  async deleteSession() {
+    return this.connectionManager.deleteRoom();
+  }
   async leaveSession() {
     return this.connectionManager.disconnectRoom();
   }
