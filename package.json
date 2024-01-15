@@ -9,7 +9,8 @@
   "source": "src/OnirixMultiplayerModule.js",
   "scripts": {
     "build": "rimraf dist && microbundle --name OnirixMultiplayerModule --external none --sourcemap false",
-    "test": "jest"
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "jest": {
     "testEnvironment": "jsdom",
