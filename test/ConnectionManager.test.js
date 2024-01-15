@@ -3,7 +3,7 @@ import { ConnectionManager } from '../src/managers/ConnectionManager';
 
 global.setImmediate = jest.fn((cb) => cb());
 
-describe('ConnectionManager', () => {
+describe('ConnectionManager Unitary Test', () => {
   let connectionManager;
   const mockSocket = {
     emit: jest.fn((event, data) => {

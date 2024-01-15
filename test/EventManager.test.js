@@ -1,7 +1,7 @@
 import { EventManager } from '../src/managers/EventManager';
 import OnirixEmbedSDK from '@onirix/embed-sdk';
 
-describe('EventManager Integration Test', () => {
+describe('EventManager Unitary Test', () => {
   let eventManager;
   let embedSDK;
 
@@ -59,7 +59,6 @@ describe('EventManager Integration Test', () => {
     expect(embedSDK.disable).not.toHaveBeenCalled();
   });
 
-  // New test case
   test('should handle multiple publish calls correctly', () => {
     const mockData = { action: 'enable' };
     eventManager.publish(mockData);

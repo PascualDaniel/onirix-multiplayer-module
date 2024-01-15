@@ -5,7 +5,7 @@ import OnirixEmbedSDK from '@onirix/embed-sdk';
 jest.mock('../src/managers/ConnectionManager.js');
 
 
-describe('OnirixMultiplayerModule', () => {
+describe('OnirixMultiplayerModule Unitary Test', () => {
     let module;
 
     beforeEach(() => {

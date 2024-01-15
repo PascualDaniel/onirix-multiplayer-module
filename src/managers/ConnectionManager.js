@@ -65,7 +65,6 @@ class ConnectionManager {
       }
     });
 
-    //room-info
     this.socket.on('room-info', (data) => {
       if (this.roomPosition == -1) {
         this.roomPosition = data;
@@ -93,7 +92,6 @@ class ConnectionManager {
       console.log('My turn.' + this.playerID + " " + data);
     });
  
-
     this.socket.on('winner', (data) => {
       this.winner = data;
       if (this.playerID == data) {
@@ -101,7 +99,6 @@ class ConnectionManager {
         console.log('win');
       }
     });
-
 
     this.socket.on('next-turn', (data) => {
       if (this.playerID == data) {
