@@ -53,7 +53,7 @@ class ConnectionManager {
     });
 
 
-    /*
+        /*
          * Handle 'published' message. This is a custom message sent from the server.
          */
     this.socket.on('published', (data) => {
@@ -111,7 +111,11 @@ class ConnectionManager {
     });
   }
 
-  //method for start observers to notify 
+  
+  /**
+   *  Notify the start observers
+   * @param {*} data 
+   */
   notifyStartObservers(data) {
     for (let i = 0; i < this.startObservers.length; i++) {
       this.startObservers[i](data);
