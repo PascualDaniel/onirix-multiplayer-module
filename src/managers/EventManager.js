@@ -34,7 +34,10 @@ class EventManager {
     this.embedSDK = sdk;
 
   }
- //manage publish events
+  /**
+   * This method is going to manage the events that are published
+   * @param data the data that is going to be published
+   */
   publish( data) {
     switch (data.action) {
       case this.Events.ENABLE:
