@@ -41,7 +41,7 @@
     "@onirix/embed-sdk": "^1.3.0",
     "jsdom": "^21.1.1",
     "setimmediate": "^1.0.5",
-    "socket.io": "^4.5.4",
+    "socket.io": "^4.6.2",
     "socket.io-client": "^4.6.1",
     "socket.io-mock": "^1.3.2",
     "text-encoding": "^0.7.0"
